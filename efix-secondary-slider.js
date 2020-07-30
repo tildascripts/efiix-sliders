@@ -86,7 +86,7 @@ $(document).ready(() => {
 			}
 		});
 	}
-	
+
 	let handleButtons = {
 	    next: document.querySelector("[data-elem-id='1596098511312']"),
 	    prev: document.querySelector("[data-elem-id='1596098511319']")
