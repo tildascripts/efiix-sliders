@@ -1,4 +1,5 @@
 $(document).ready(() => {
+    let currentSlide = 0;
 	let mainWrapper= $("#rec213639919");
 	mainWrapper.css("position", "relative");
 	let childWrapper = $("<div id='childWrapper'></div>");
@@ -65,6 +66,7 @@ $(document).ready(() => {
 	});
 
 	const openSlide = index => {
+	    currentSlide = index;
 		slides.forEach((slide, slideIndex) => {
 			if (slideIndex === index) {
 				slide.fadeIn();
@@ -84,4 +86,25 @@ $(document).ready(() => {
 			}
 		});
 	}
+	
+	let handleButtons = {
+	    next: document.querySelector("[data-elem-id='1596098511312']"),
+	    prev: document.querySelector("[data-elem-id='1596098511319']")
+	}
+	handleButtons.next.style.zIndex = handleButtons.prev.style.zIndex = 101;
+	handleButtons.next.style.cursor = handleButtons.prev.style.cursor = "pointer";
+	handleButtons.next.addEventListener("click", () => {
+	    currentSlide++;
+	    if (currentSlide > slides.length - 1) {
+	        currentSlide = 0;
+	    }
+	    openSlide(currentSlide);
+	});
+	handleButtons.prev.addEventListener("click", () => {
+	    currentSlide--;
+	    if (currentSlide < 0) {
+	        currentSlide = slides.length - 1;
+	    }
+	    openSlide(currentSlide);
+	});
 });
